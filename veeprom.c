@@ -269,7 +269,7 @@ static bool flash_page_erase(uint32_t flash_addr) {
 static uint64_t flash_page_get_state(uint32_t flash_addr) {
     uint64_t state = 0;
     for (uint8_t i = 0; i < 4; ++i) {
-        state = ((state << 16) & (uint64_t)0x000000000000FFFF) | flash_read_16(flash_addr + PAGE_STATE_OFFSET + i * 2);
+        state = (state << 16) | flash_read_16(flash_addr + PAGE_STATE_OFFSET + i * 2);
     }
     return state;
 }
